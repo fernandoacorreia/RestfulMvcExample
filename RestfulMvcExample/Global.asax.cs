@@ -21,12 +21,37 @@ namespace RestfulMvcExample
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // Generic CRUD routes
             routes.MapRoute(
-                "Default", // Route name
-                "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                "get-index",
+                "{controller}",
+                new { action = "Index" },
+                new { httpMethod = new HttpMethodConstraint("GET") }
             );
-
+            routes.MapRoute(
+                "get-object",
+                "{controller}/{id}",
+                new { action = "Get" },
+                new { httpMethod = new HttpMethodConstraint("GET") }
+            );
+            routes.MapRoute(
+                "post-object",
+                "{controller}",
+                new { action = "Post" },
+                new { httpMethod = new HttpMethodConstraint("POST") }
+            );
+            routes.MapRoute(
+                "put-object",
+                "{controller}/{id}",
+                new { action = "Put" },
+                new { httpMethod = new HttpMethodConstraint("PUT") }
+            );
+            routes.MapRoute(
+                "delete-object",
+                "{controller}/{id}",
+                new { action = "Delete" },
+                new { httpMethod = new HttpMethodConstraint("DELETE") }
+            );
         }
 
         protected void Application_Start()
