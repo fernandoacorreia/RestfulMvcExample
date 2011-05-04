@@ -25,7 +25,7 @@ namespace RestfulMvcExample
             routes.MapRoute(
                 "get-index",
                 "{controller}",
-                new { action = "Index" },
+                new { controller = "Home", action = "Index" },
                 new { httpMethod = new HttpMethodConstraint("GET") }
             );
             routes.MapRoute(

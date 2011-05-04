@@ -9,46 +9,44 @@ namespace RestfulMvcExample.Controllers
 {
     public class ContactsController : Controller
     {
+        private IContactRepository _repository;
+
+        public ContactsController() : this(new ContactRepository())
+        {
+        }
+
+        public ContactsController(IContactRepository repository)
+        {
+            _repository = repository;
+        }
+
         public ActionResult Index()
         {
-            ContactManager contactManager = new ContactManager();
-            var data = contactManager.GetAll();
+            var data = _repository.GetAll();
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Get(int id)
         {
-            ContactManager contactManager = new ContactManager();
-            try
-            {
-                var data = contactManager.Get(id);
-                return Json(data, JsonRequestBehavior.AllowGet);
-            }
-            catch (System.Collections.Generic.KeyNotFoundException ex)
-            {
-                var data = new { message = "Contact not found." };
-                return Json(data);
-            }
+            var data = _repository.Get(id);
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Post(Contact contact)
         {
-            ContactManager contactManager = new ContactManager();
-            contactManager.Add(contact);
+            _repository.Add(contact);
             return Json(contact);
         }
 
         public ActionResult Put(int id, Contact contact)
         {
-            ContactManager contactManager = new ContactManager();
-            contactManager.Update(id, contact);
+            _repository.Update(id, contact);
             return Json(contact);
         }
 
         public ActionResult Delete(int id)
         {
-            ContactManager contactManager = new ContactManager();
-            contactManager.Delete(id);
+            _repository.Delete(id);
             var data = new { message = "Contact deleted." };
             return Json(data);
         }

@@ -11,25 +11,28 @@ namespace RestfulMvcExample.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+
+        public string Href
+        {
+            get
+            {
+                return "/contacts/" + Id;
+            }
+        }
     }
 
-    public class ContactManager
+    public interface IContactRepository
     {
-        static private Dictionary<int, Contact> contactList;
+        void Add(Contact contact);
+        void Delete(int contactId);
+        object Get(int contactId);
+        List<Contact> GetAll();
+        void Update(int contactId, Contact contact);
+    }
 
-        static ContactManager()
-        {
-            ContactManager.Reload();
-        }
-
-        public static void Reload()
-        {
-            contactList = new Dictionary<int, Contact> {
-                {1, new Contact { Id = 1, Name = "Contact one", Email = "one@example.com", Phone = "555-1234" } },
-                {2, new Contact { Id = 2, Name = "Contact two", Email = "two@example.com", Phone = "555-2222" } },
-                {3, new Contact { Id = 3, Name = "Contact three", Email = "three@example.com", Phone = "555-3333" } }
-            };
-        }
+    public class ContactRepository : RestfulMvcExample.Models.IContactRepository
+    {
+        static private Dictionary<int, Contact> contactList = new Dictionary<int,Contact>();
 
         public List<Contact> GetAll()
         {
@@ -37,22 +40,22 @@ namespace RestfulMvcExample.Models
             return contacts;
         }
 
-        internal object Get(int contactId)
+        public object Get(int contactId)
         {
             return contactList[contactId];
         }
 
-        internal void Delete(int contactId)
+        public void Delete(int contactId)
         {
             contactList.Remove(contactId);
         }
 
-        internal void Add(Contact contact)
+        public void Add(Contact contact)
         {
             contactList[contact.Id] = contact;
         }
 
-        internal void Update(int contactId, Contact contact)
+        public void Update(int contactId, Contact contact)
         {
             contactList[contactId] = contact;
         }
