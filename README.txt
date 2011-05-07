@@ -46,9 +46,7 @@ GET http://localhost:62983/
 The service is running.
 
 GET http://localhost:62983/contacts
-[{"Id":2,"Name":"CONTACT TWO UPDATED","Email":"two@example.com","Phone":"555-222
-2","Href":"/contacts/2"},{"Id":3,"Name":"Contact three","Email":"three@example.c
-om","Phone":"555-3333","Href":"/contacts/3"}]
+[]
 
 POST http://localhost:62983/contacts
 {"Id":1,"Name":"Contact one","Email":"one@example.com","Phone":"555-1111","Href"
@@ -69,6 +67,10 @@ GET http://localhost:62983/contacts
 xample.com","Phone":"555-3333","Href":"/contacts/3"}]
 
 PUT http://localhost:62983/contacts/2
+{"Id":2,"Name":"CONTACT TWO UPDATED","Email":"two@example.com","Phone":"555-2222
+","Href":"/contacts/2"}
+
+GET http://localhost:62983/contacts/2
 {"Id":2,"Name":"CONTACT TWO UPDATED","Email":"two@example.com","Phone":"555-2222
 ","Href":"/contacts/2"}
 
