@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using RestfulMvcExample.Models;
 
 namespace RestfulMvcExample.Controllers
 {
     public class ContactsController : Controller
     {
-        private IContactRepository _repository;
+        private readonly IContactRepository _repository;
 
         public ContactsController() : this(new ContactRepository())
         {

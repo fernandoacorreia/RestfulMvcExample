@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace RestfulMvcExample.Models
 {
@@ -30,9 +28,9 @@ namespace RestfulMvcExample.Models
         void Update(int contactId, Contact contact);
     }
 
-    public class ContactRepository : RestfulMvcExample.Models.IContactRepository
+    public class ContactRepository : IContactRepository
     {
-        static private Dictionary<int, Contact> contactList = new Dictionary<int,Contact>();
+        static private readonly Dictionary<int, Contact> contactList = new Dictionary<int,Contact>();
 
         public List<Contact> GetAll()
         {
