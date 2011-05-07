@@ -2,6 +2,7 @@
 
 namespace RestfulMvcExample.Controllers
 {
+    // Home page
     public class HomeController : Controller
     {
         public ActionResult Index()

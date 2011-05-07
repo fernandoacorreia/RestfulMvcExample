@@ -3,6 +3,7 @@ using System.Linq;
 
 namespace RestfulMvcExample.Models
 {
+    // Contact domain object
     public class Contact
     {
         public int Id { get; set; }
@@ -10,6 +11,7 @@ namespace RestfulMvcExample.Models
         public string Email { get; set; }
         public string Phone { get; set; }
 
+        // URL of this resource
         public string Href
         {
             get
@@ -19,6 +21,7 @@ namespace RestfulMvcExample.Models
         }
     }
 
+    // contact repository interface
     public interface IContactRepository
     {
         void Add(Contact contact);
@@ -28,6 +31,8 @@ namespace RestfulMvcExample.Models
         void Update(int contactId, Contact contact);
     }
 
+    // A contact repository that keeps its data in memory.
+    // Data will remain while the service is running and will vanish when the service is stopped.
     public class ContactRepository : IContactRepository
     {
         static private readonly Dictionary<int, Contact> contactList = new Dictionary<int,Contact>();

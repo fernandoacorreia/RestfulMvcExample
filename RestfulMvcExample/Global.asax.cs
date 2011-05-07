@@ -17,7 +17,7 @@ namespace RestfulMvcExample
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            // Generic CRUD routes
+            // Generic RESTful CRUD routes
             routes.MapRoute(
                 "get-index",
                 "{controller}",
