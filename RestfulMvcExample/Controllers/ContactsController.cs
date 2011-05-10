@@ -9,12 +9,7 @@ namespace RestfulMvcExample.Controllers
         // reference to contact repository object
         private readonly IContactRepository _repository;
 
-        // default constructor will create a new instance of the repository
-        public ContactsController() : this(new ContactRepository())
-        {
-        }
-
-        // alternate constructor for unit testing
+        // constructor supporting inversion of control
         public ContactsController(IContactRepository repository)
         {
             _repository = repository;

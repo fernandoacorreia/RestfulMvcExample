@@ -35,32 +35,32 @@ namespace RestfulMvcExample.Models
     // Data will remain while the service is running and will vanish when the service is stopped.
     public class ContactRepository : IContactRepository
     {
-        static private readonly Dictionary<int, Contact> contactList = new Dictionary<int,Contact>();
+        static private readonly Dictionary<int, Contact> ContactList = new Dictionary<int,Contact>();
 
         public List<Contact> GetAll()
         {
-            List<Contact> contacts = contactList.Select(c => c.Value).ToList();
+            List<Contact> contacts = ContactList.Select(c => c.Value).ToList();
             return contacts;
         }
 
         public object Get(int contactId)
         {
-            return contactList[contactId];
+            return ContactList[contactId];
         }
 
         public void Delete(int contactId)
         {
-            contactList.Remove(contactId);
+            ContactList.Remove(contactId);
         }
 
         public void Add(Contact contact)
         {
-            contactList[contact.Id] = contact;
+            ContactList[contact.Id] = contact;
         }
 
         public void Update(int contactId, Contact contact)
         {
-            contactList[contactId] = contact;
+            ContactList[contactId] = contact;
         }
     }
 }
